@@ -1,0 +1,4 @@
+
+class MainStore {}
+
+export { MainStore };
