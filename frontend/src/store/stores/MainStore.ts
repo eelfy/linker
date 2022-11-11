@@ -1,4 +1,3 @@
-
 class MainStore {}
 
 export { MainStore };

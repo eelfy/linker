@@ -1,4 +1,6 @@
-import { Dispatch, ReactElement, SetStateAction } from 'react';
+import {
+  Dispatch, MouseEvent, ReactElement, SetStateAction,
+} from 'react';
 
 interface PopUpProps {children: ReactElement}
 
@@ -7,7 +9,12 @@ interface PopUpBehaviorProps extends PopUpProps {
   setVisible: Dispatch<SetStateAction<boolean>>;
 }
 interface PopUpTemplateProps extends PopUpProps {
-  closePopUp: () => void;
+  closePopUp: ClosePopUp
 }
 
-export type { PopUpBehaviorProps, PopUpTemplateProps };
+type ClosePopUp = (event: MouseEvent) => void;
+
+export type {
+  PopUpProps, PopUpBehaviorProps, PopUpTemplateProps,
+  ClosePopUp,
+};

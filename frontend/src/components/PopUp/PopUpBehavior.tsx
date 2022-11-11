@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import { popUpRoot } from '../../consts';
-import { PopUpBehaviorProps } from './PopUpTypes';
+import { ClosePopUp, PopUpBehaviorProps } from './PopUpTypes';
 import PopUpTemplate from './PopUpTemplate';
 
 const PopUpBehavior: FC<PopUpBehaviorProps> = ({
@@ -9,9 +9,10 @@ const PopUpBehavior: FC<PopUpBehaviorProps> = ({
   setVisible,
   children,
 }) => {
-  const closePopUp = () => {
+  const closePopUp:ClosePopUp = () => {
     setVisible(false);
   };
+
   return visible ? createPortal(
     <PopUpTemplate closePopUp={closePopUp}>{children}</PopUpTemplate>,
     popUpRoot!,
