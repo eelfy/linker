@@ -4,7 +4,7 @@ import { Link } from '../../store/stores/LinksStore';
 interface LinkCardProps extends Link {}
 
 interface LinkCardBehaviorProps extends LinkCardProps {}
-interface LinkCardTemplateProps extends Omit<LinkCardProps, 'id'> {
+interface LinkCardTemplateProps extends LinkCardProps {
   deleteHandler: DeleteHandler;
   editHandler: EditHandler;
   isPopUpVisible: boolean;

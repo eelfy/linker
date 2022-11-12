@@ -5,7 +5,7 @@ import './App.css';
 const App = () => (
   <Routes>
     <Route path="/" element={<LinksConstructor />} />
-    <Route path="*" element={<h1>*</h1>} />
+    <Route path="*" element={<LinksConstructor />} />
   </Routes>
 );
 

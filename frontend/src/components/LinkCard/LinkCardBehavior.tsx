@@ -26,6 +26,7 @@ const LinkCardBehavior: FC<LinkCardBehaviorProps> = observer(({
 
   return (
     <LinkCardTemplate
+      id={id}
       tag={tag}
       link={link}
       deleteHandler={deleteHandler}

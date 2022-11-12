@@ -9,15 +9,28 @@ import { LinksEditPopUpTemplateProps } from './LinksEditPopUpTypes';
 const LinksEditPopUpTemplate: FC<LinksEditPopUpTemplateProps> = ({
   visible,
   setVisible,
+  linkValue,
+  descriptionValue,
+  updateLinkValue,
+  updateDescriptionValue,
+  acceptChangesHandler,
 }) => (
   <PopUp
     visible={visible}
     setVisible={setVisible}
   >
     <PopUpBody>
-      <Input placeholder={Texts.link} />
-      <Input placeholder={Texts.tag} />
-      <Button>{Texts.accept}</Button>
+      <Input
+        value={linkValue}
+        onChange={updateLinkValue}
+        placeholder={Texts.link}
+      />
+      <Input
+        value={descriptionValue}
+        onChange={updateDescriptionValue}
+        placeholder={Texts.tag}
+      />
+      <Button onClick={acceptChangesHandler}>{Texts.accept}</Button>
     </PopUpBody>
   </PopUp>
 );

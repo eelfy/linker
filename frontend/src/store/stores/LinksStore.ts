@@ -6,21 +6,23 @@ interface Link {
   link: string
 }
 
-const mockLinks: Link[] = [
-  {
-    id: 0,
-    tag: 'vk',
-    link: 'https://vk.com/eelfy',
-  },
-  {
-    id: 1,
-    tag: 'inst',
-    link: 'https://instagram.com/eelfy_za',
-  },
-];
+// const mockLinks: Link[] = [
+//   {
+//     id: 0,
+//     tag: 'vk',
+//     link: 'https://vk.com/eelfy',
+//   },
+//   {
+//     id: 1,
+//     tag: 'inst',
+//     link: 'https://instagram.com/eelfy_za',
+//   },
+// ];
 
 class LinksStore {
-  links: Link[] = mockLinks;
+  links: Link[] = [];
+
+  url: string = '';
 
   constructor() {
     makeAutoObservable(this);
@@ -34,11 +36,15 @@ class LinksStore {
     this.links = this.links.filter((link) => link.id !== linkIdToRemove);
   };
 
-  createLink = (tag: string, link: string): Link => {
+  createLink = (
+    tag: string,
+    link: string,
+    id?: number,
+  ): Link => {
     const lastLink = this.links.at(-1);
 
     const newLink: Link = {
-      id: lastLink ? lastLink.id + 1 : 0,
+      id: id ?? (lastLink ? lastLink.id + 1 : 0),
       tag,
       link,
     };
@@ -53,6 +59,15 @@ class LinksStore {
       }
       return link;
     });
+  };
+
+  createUrlWiaLinksObject = (): string => {
+    let updatedUrl = this.url;
+    this.links.forEach((link) => {
+      const stringedLink = `${link.tag}-${link.link}`;
+      updatedUrl += stringedLink;
+    });
+    return updatedUrl;
   };
 }
 

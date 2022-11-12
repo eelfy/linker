@@ -8,6 +8,7 @@ import { LinkCardTemplateProps } from './LinkCardTypes';
 import LinksEditPopUp from '../LinksEditPopUp';
 
 const LinkCardTemplate: FC<LinkCardTemplateProps> = ({
+  id,
   tag,
   link,
   deleteHandler,
@@ -35,8 +36,11 @@ const LinkCardTemplate: FC<LinkCardTemplateProps> = ({
     </Card>
 
     <LinksEditPopUp
+      linkId={id}
       visible={isPopUpVisible}
       setVisible={setIsPopUpVisible}
+      initDescriptionValue={tag}
+      initLinkValue={link}
     />
 
   </>
