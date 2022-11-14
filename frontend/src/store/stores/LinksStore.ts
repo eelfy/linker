@@ -24,12 +24,16 @@ class LinksStore {
 
   url: string = '';
 
+  storedUserName = '';
+
   constructor() {
     makeAutoObservable(this);
   }
 
   addLink = (newLink: Link) => {
-    this.links.push(newLink);
+    const newLinks = [...this.links];
+    newLinks.push(newLink);
+    this.links = newLinks;
   };
 
   deleteLink = (linkIdToRemove: number) => {
@@ -61,13 +65,17 @@ class LinksStore {
     });
   };
 
-  createUrlWiaLinksObject = (): string => {
-    let updatedUrl = this.url;
+  createUrlWiaLinksObject = () => {
+    let updatedUrl = '';
     this.links.forEach((link) => {
-      const stringedLink = `${link.tag}-${link.link}`;
+      const stringedLink = `${link.tag}-${link.link}&`;
       updatedUrl += stringedLink;
     });
-    return updatedUrl;
+    this.url = `${new URL(document.URL)}/@eelfy?${updatedUrl}`;
+  };
+
+  updateUserName = (newUserName: string) => {
+    this.storedUserName = newUserName;
   };
 }
 
