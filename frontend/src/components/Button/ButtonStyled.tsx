@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { ButtonStyledProps } from './ButtonTypes';
 
 const ButtonBorder = '2px solid';
 
-const ButtonStyled = styled.button`
+const ButtonStyled = styled.button<ButtonStyledProps>`
   width: 100%;
   height: 30px;
   
@@ -12,7 +13,7 @@ const ButtonStyled = styled.button`
   background-color: var(--color-pink);
 
   border: ${ButtonBorder} transparent;
-  border-radius: var(--border-main-radius);
+  border-radius: ${({ shape }) => (shape === 'circle' ? '50%' : css`var(--border-main-radius)`)};
 
   cursor: pointer;
 
