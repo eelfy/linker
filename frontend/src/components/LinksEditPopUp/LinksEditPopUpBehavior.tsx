@@ -40,7 +40,7 @@ const LinksEditPopUpBehavior: FC<LinksEditPopUpBehaviorProps> = observer(({
       dropInputs();
     }
 
-    setVisible(false);
+    // setVisible(false);
   };
 
   function dropInputs() {

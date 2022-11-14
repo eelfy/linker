@@ -4,14 +4,16 @@ import { useLocation } from 'react-router-dom';
 import { LinksTableBehaviorProps, PlusButtonHandler } from './LinksTableTypes';
 import LinksTableTemplate from './LinksTableTemplate';
 import { useStore } from '../../store/RootStore';
+import { separateURLOnModeAndLinksList } from '../../utils';
 
-const LinksTableBehavior: FC<LinksTableBehaviorProps> = observer(() => {
+const LinksTableBehavior: FC<LinksTableBehaviorProps> = observer(({ isEditMode }) => {
   const {
     LinksStore: {
       links,
       createLink,
       addLink,
       createUrlWiaLinksObject,
+      url,
     },
   } = useStore();
 
@@ -20,13 +22,13 @@ const LinksTableBehavior: FC<LinksTableBehaviorProps> = observer(() => {
   const location = useLocation();
 
   useEffect(() => {
-    const sections = location.search?.split('?');
-    const isEditMode = sections.includes('edit');
-    const linksFromUrl = isEditMode ? sections[2] : sections[1];
+    const sections = separateURLOnModeAndLinksList(location);
 
+    const linksFromUrl = sections.find((section) => section !== 'edit' && section !== '');
     linksFromUrl?.split('&').forEach((link) => {
       const splitedLink = link?.split('-');
       const transformedLink = createLink(splitedLink[0], splitedLink[1]);
+
       addLink(transformedLink);
     });
   }, []);
@@ -46,6 +48,8 @@ const LinksTableBehavior: FC<LinksTableBehaviorProps> = observer(() => {
       setIsPopUpVisible={setIsPopUpVisible}
       plusButtonHandler={plusButtonHandler}
       createUrlWiaLinksObjectHandler={createUrlWiaLinksObjectHandler}
+      isEditMode={isEditMode}
+      url={url}
     />
   );
 });

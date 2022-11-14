@@ -20,11 +20,16 @@ const TagLink = styled.a`
 
   font-size: 24px;
   text-decoration: none;
+  font-weight: bold;
 
   border-radius: var(--border-main-radius);
 
   &:hover {
     background-color: var(--color-table-row);
+  }
+
+  & {
+    color: var(--color-pink);
   }
 `;
 

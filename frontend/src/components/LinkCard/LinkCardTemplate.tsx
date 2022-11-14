@@ -15,33 +15,40 @@ const LinkCardTemplate: FC<LinkCardTemplateProps> = ({
   editHandler,
   isPopUpVisible,
   setIsPopUpVisible,
+  isEditMode,
 }) => (
   <>
     <Card>
       <LinkCardBody>
         <TagLink href={link}>{tag}</TagLink>
 
-        <LinkButtons>
+        {
+           isEditMode && (
+           <LinkButtons>
+             <Button onClick={editHandler}>
+               <FontAwesomeIcon icon={faPen} />
+             </Button>
 
-          <Button onClick={editHandler}>
-            <FontAwesomeIcon icon={faPen} />
-          </Button>
+             <Button onClick={deleteHandler}>
+               <FontAwesomeIcon icon={faTrash} />
+             </Button>
 
-          <Button onClick={deleteHandler}>
-            <FontAwesomeIcon icon={faTrash} />
-          </Button>
-
-        </LinkButtons>
+           </LinkButtons>
+           )
+        }
       </LinkCardBody>
     </Card>
-
-    <LinksEditPopUp
-      linkId={id}
-      visible={isPopUpVisible}
-      setVisible={setIsPopUpVisible}
-      initDescriptionValue={tag}
-      initLinkValue={link}
-    />
+    {
+      isEditMode && (
+      <LinksEditPopUp
+        linkId={id}
+        visible={isPopUpVisible}
+        setVisible={setIsPopUpVisible}
+        initDescriptionValue={tag}
+        initLinkValue={link}
+      />
+      )
+    }
 
   </>
 );

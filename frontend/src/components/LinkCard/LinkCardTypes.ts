@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Link } from '../../store/stores/LinksStore';
 
-interface LinkCardProps extends Link {}
+interface LinkCardProps extends Link {
+  isEditMode: boolean;
+}
 
 interface LinkCardBehaviorProps extends LinkCardProps {}
 interface LinkCardTemplateProps extends LinkCardProps {

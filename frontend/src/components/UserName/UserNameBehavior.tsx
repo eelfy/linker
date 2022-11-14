@@ -1,35 +1,40 @@
 import { FC, useEffect, useState } from 'react';
-import { Location, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { useStore } from '../../store/RootStore';
 import { UserNameBehaviorProps } from './UserNameTypes';
 import UserNameTemplate from './UserNameTemplate';
+import { getUserNameFromUrl } from '../../utils';
 
-const createUserNameFromPath = (location: Location): string | undefined => {
-  const { pathname } = location;
-  const pathnameArr = pathname.split('');
-  pathnameArr.shift();
-  const userName = pathnameArr.join('');
-  return userName;
-};
+const UserNameBehavior: FC<UserNameBehaviorProps> = observer(({ isEditMode }) => {
+  const { LinksStore: { updateUserName } } = useStore();
 
-const UserNameBehavior: FC<UserNameBehaviorProps> = () => {
   const location = useLocation();
-  const [userName, setUserName] = useState<string>('');
-  const [editMode, setEditMode] = useState<boolean>(false);
+  const [userName, setUserName] = useState<string>(getUserNameFromUrl(location) ?? '');
 
   useEffect(() => {
-    const name = createUserNameFromPath(location);
-    if (!name) {
-      setEditMode(true);
-    } else {
-      setUserName(name);
-    }
+    updateStoredUserNameWiaState();
   }, []);
+
+  const editUserNameHandler = () => {};
+  const acceptNewUserNameHandler = () => {
+    updateStoredUserNameWiaState();
+  };
+  const cancelNewUseNameHandler = () => {};
+
+  function updateStoredUserNameWiaState() {
+    updateUserName(userName);
+  }
   return (
     <UserNameTemplate
       userName={userName}
-      editMode={editMode}
+      setUserName={setUserName}
+      isEditMode={isEditMode}
+      editUserNameHandler={editUserNameHandler}
+      acceptNewUserNameHandler={acceptNewUserNameHandler}
+      cancelNewUseNameHandler={cancelNewUseNameHandler}
     />
   );
-};
+});
 
 export default UserNameBehavior;

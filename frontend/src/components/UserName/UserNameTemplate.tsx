@@ -5,12 +5,19 @@ import { UserNameTemplateProps } from './UserNameTypes';
 
 const UserNameTemplate: FC<UserNameTemplateProps> = ({
   userName,
-  editMode,
+  setUserName,
+  isEditMode,
 }) => (
-  userName ? (
+  isEditMode ? (
+    <Input
+      value={userName}
+      onChange={(event) => setUserName(event.currentTarget.value)}
+    />
+  ) : (
     <StyledUserName>
+      @
       {userName}
     </StyledUserName>
-  ) : <Input />);
+  ));
 
 export default UserNameTemplate;

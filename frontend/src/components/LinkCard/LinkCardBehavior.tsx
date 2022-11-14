@@ -8,6 +8,7 @@ const LinkCardBehavior: FC<LinkCardBehaviorProps> = observer(({
   id,
   tag,
   link,
+  isEditMode,
 }) => {
   const {
     LinksStore: {
@@ -33,6 +34,7 @@ const LinkCardBehavior: FC<LinkCardBehaviorProps> = observer(({
       editHandler={editHandler}
       isPopUpVisible={isPopUpVisible}
       setIsPopUpVisible={setIsPopUpVisible}
+      isEditMode={isEditMode}
     />
   );
 });

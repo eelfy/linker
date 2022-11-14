@@ -14,6 +14,8 @@ const LinksTableTemplate: FC<LinksTableTemplateProps> = ({
   setIsPopUpVisible,
   plusButtonHandler,
   createUrlWiaLinksObjectHandler,
+  isEditMode,
+  url,
 }) => (
   <LinksTableBody>
     {links.map((link) => (
@@ -22,14 +24,21 @@ const LinksTableTemplate: FC<LinksTableTemplateProps> = ({
         id={link.id}
         tag={link.tag}
         link={link.link}
+        isEditMode={isEditMode}
       />
     ))}
-    <Icon onClick={plusButtonHandler}>
-      <FontAwesomeIcon icon={faPlus} />
-    </Icon>
-    <Button onClick={createUrlWiaLinksObjectHandler}>create url</Button>
 
-    <LinksEditPopUp visible={isPopUpVisible} setVisible={setIsPopUpVisible} />
+    { isEditMode && (
+      <>
+        <Icon onClick={plusButtonHandler}>
+          <FontAwesomeIcon icon={faPlus} />
+        </Icon>
+        <Button onClick={createUrlWiaLinksObjectHandler}>create url</Button>
+        <div>{url}</div>
+        <LinksEditPopUp visible={isPopUpVisible} setVisible={setIsPopUpVisible} />
+      </>
+    )}
+
   </LinksTableBody>
 );
 
