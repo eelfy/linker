@@ -10,12 +10,13 @@ const UserNameTemplate: FC<UserNameTemplateProps> = ({
 }) => (
   isEditMode ? (
     <Input
+      placeholder="user name"
       value={userName}
       onChange={(event) => setUserName(event.currentTarget.value)}
     />
   ) : (
     <StyledUserName>
-      @
+      {userName.length > 0 && '@'}
       {userName}
     </StyledUserName>
   ));
