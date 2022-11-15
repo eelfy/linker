@@ -71,7 +71,7 @@ class LinksStore {
       const stringedLink = `${link.tag}-${link.link}&`;
       updatedUrl += stringedLink;
     });
-    this.url = `${new URL(document.URL)}/@eelfy?${updatedUrl}`;
+    this.url = `${new URL(document.URL).origin}/@${this.storedUserName}?${updatedUrl}`;
   };
 
   updateUserName = (newUserName: string) => {
