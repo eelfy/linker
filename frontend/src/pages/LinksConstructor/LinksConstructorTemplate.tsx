@@ -28,20 +28,20 @@ const LinksConstructorTemplate: FC<LinksConstructorTemplateProps> = ({
     <AppSettingsContainer>
       {isEditMode ? (
         <>
-          <SettingsButton onClick={cancelEditHandler} shape="circle">
+          <SettingsButton title="undo" onClick={cancelEditHandler} shape="circle">
             <FontAwesomeIcon icon={faCancel} />
           </SettingsButton>
 
-          <SettingsButton onClick={acceptEditHandler} shape="circle">
+          <SettingsButton title="accept" onClick={acceptEditHandler} shape="circle">
             <FontAwesomeIcon icon={faCheck} />
           </SettingsButton>
 
-          <SettingsButton onClick={copyLinkHandler} shape="circle">
+          <SettingsButton title="share" onClick={copyLinkHandler} shape="circle">
             <FontAwesomeIcon icon={faShare} />
           </SettingsButton>
         </>
       ) : (
-        <SettingsButton onClick={startEditHandler} shape="circle">
+        <SettingsButton title="edit" onClick={startEditHandler} shape="circle">
           <FontAwesomeIcon icon={faPen} />
         </SettingsButton>
       )}
