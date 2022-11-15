@@ -1,10 +1,13 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Location, useLocation } from 'react-router-dom';
 import { separateURLOnModeAndLinksList } from '../../utils';
 import { LinksConstructorBehaviorProps, SettingHandlers } from './LinksConstructorTypes';
 import LinksConstructorTemplate from './LinksConstructorTemplate';
 
 const inferModeFromLocation = (location: Location) => {
+  if (location.pathname === '/') {
+    return true;
+  }
   const sections = separateURLOnModeAndLinksList(location);
   const editMode = sections.includes('edit');
   return editMode;
