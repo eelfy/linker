@@ -37,17 +37,12 @@ const LinksTableBehavior: FC<LinksTableBehaviorProps> = observer(({ isEditMode }
     setIsPopUpVisible(true);
   };
 
-  const createUrlWiaLinksObjectHandler = () => {
-    console.log(createUrlWiaLinksObject());
-  };
-
   return (
     <LinksTableTemplate
       links={links}
       isPopUpVisible={isPopUpVisible}
       setIsPopUpVisible={setIsPopUpVisible}
       plusButtonHandler={plusButtonHandler}
-      createUrlWiaLinksObjectHandler={createUrlWiaLinksObjectHandler}
       isEditMode={isEditMode}
       url={url}
     />

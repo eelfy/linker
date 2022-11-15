@@ -6,14 +6,12 @@ import LinkCard from '../LinkCard';
 import Icon from '../Icon';
 import { LinksTableTemplateProps } from './LinksTableTypes';
 import { LinksTableBody } from './LinksTableStyled';
-import Button from '../Button';
 
 const LinksTableTemplate: FC<LinksTableTemplateProps> = ({
   links,
   isPopUpVisible,
   setIsPopUpVisible,
   plusButtonHandler,
-  createUrlWiaLinksObjectHandler,
   isEditMode,
   url,
 }) => (
@@ -33,7 +31,6 @@ const LinksTableTemplate: FC<LinksTableTemplateProps> = ({
         <Icon onClick={plusButtonHandler}>
           <FontAwesomeIcon icon={faPlus} />
         </Icon>
-        <Button onClick={createUrlWiaLinksObjectHandler}>create url</Button>
         <div>{url}</div>
         <LinksEditPopUp visible={isPopUpVisible} setVisible={setIsPopUpVisible} />
       </>

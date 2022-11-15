@@ -11,7 +11,6 @@ interface LinksTableTemplateProps extends LinksTableProps {
   isPopUpVisible: boolean;
   setIsPopUpVisible: Dispatch<SetStateAction<boolean>>;
   plusButtonHandler: PlusButtonHandler;
-  createUrlWiaLinksObjectHandler: () => void;
   url: string;
 }
 
