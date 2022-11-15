@@ -14,7 +14,7 @@ const UserNameBehavior: FC<UserNameBehaviorProps> = observer(({ isEditMode }) =>
 
   useEffect(() => {
     updateStoredUserNameWiaState();
-  }, []);
+  }, [userName]);
 
   const editUserNameHandler = () => {};
   const acceptNewUserNameHandler = () => {
