@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCancel, faCheck, faPen, faShare,
 } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
-import Button from '../../components/Button';
+import { observer } from 'mobx-react-lite';
+import { useStore } from '../../store/RootStore';
 import UserName from '../../components/UserName';
 import LinksTable from '../../components/LinksTable';
 import {
@@ -12,12 +12,25 @@ import {
 } from './LinksConstructorStyled';
 import { LinksConstructorTemplateProps } from './LinksConstructorTypes';
 
+const ShareButton:FC = observer(() => {
+  const { LinksStore: { createUrlWiaLinksObject } } = useStore();
+
+  const copyLinkHandler = () => {
+    createUrlWiaLinksObject();
+  };
+
+  return (
+    <SettingsButton title="share" onClick={copyLinkHandler} shape="circle">
+      <FontAwesomeIcon icon={faShare} />
+    </SettingsButton>
+  );
+});
+
 const LinksConstructorTemplate: FC<LinksConstructorTemplateProps> = ({
   isEditMode,
   cancelEditHandler,
   acceptEditHandler,
   startEditHandler,
-  copyLinkHandler,
 }) => (
   <ConstructorWrapper>
     <ConstructorStyled>
@@ -36,9 +49,7 @@ const LinksConstructorTemplate: FC<LinksConstructorTemplateProps> = ({
             <FontAwesomeIcon icon={faCheck} />
           </SettingsButton>
 
-          <SettingsButton title="share" onClick={copyLinkHandler} shape="circle">
-            <FontAwesomeIcon icon={faShare} />
-          </SettingsButton>
+          <ShareButton />
         </>
       ) : (
         <SettingsButton title="edit" onClick={startEditHandler} shape="circle">
