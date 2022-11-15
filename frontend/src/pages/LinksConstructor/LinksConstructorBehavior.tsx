@@ -26,7 +26,6 @@ const LinksConstructorBehavior: FC<LinksConstructorBehaviorProps> = () => {
   const startEditHandler: SettingHandlers = () => {
     setIsEditMode(true);
   };
-  const copyLinkHandler: SettingHandlers = () => {};
 
   return (
     <LinksConstructorTemplate
@@ -34,7 +33,6 @@ const LinksConstructorBehavior: FC<LinksConstructorBehaviorProps> = () => {
       cancelEditHandler={cancelEditHandler}
       acceptEditHandler={acceptEditHandler}
       startEditHandler={startEditHandler}
-      copyLinkHandler={copyLinkHandler}
     />
   );
 };

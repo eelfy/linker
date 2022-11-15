@@ -6,7 +6,6 @@ interface LinksConstructorTemplateProps extends LinksConstructorProps {
   cancelEditHandler: SettingHandlers;
   acceptEditHandler: SettingHandlers;
   startEditHandler: SettingHandlers;
-  copyLinkHandler: SettingHandlers;
 }
 
 type SettingHandlers = () => void;
