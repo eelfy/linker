@@ -67,11 +67,12 @@ class LinksStore {
 
   createUrlWiaLinksObject = () => {
     let updatedUrl = '';
-    this.links.forEach((link) => {
-      const stringedLink = `${link.tag}-${link.link}&`;
+    this.links.forEach((link, linkIndx) => {
+      const stringedLink = `${link.tag}-${link.link}${linkIndx === this.links.length - 1 ? '' : '&'}`;
       updatedUrl += stringedLink;
     });
-    this.url = `${new URL(document.URL).origin}/@${this.storedUserName}?${updatedUrl}`;
+    // eslint-disable-next-line max-len
+    this.url = `${new URL(document.URL).origin}/${this.storedUserName.trim() !== '' ? '@' : ''}${this.storedUserName}${this.links.length > 0 ? '?' : ''}${updatedUrl}`;
   };
 
   updateUserName = (newUserName: string) => {
