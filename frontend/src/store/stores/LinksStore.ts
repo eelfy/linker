@@ -72,7 +72,7 @@ class LinksStore {
       updatedUrl += stringedLink;
     });
     // eslint-disable-next-line max-len
-    this.url = `${new URL(document.URL).origin}/${this.storedUserName.trim() !== '' ? '@' : ''}${this.storedUserName}${this.links.length > 0 ? '?' : ''}${updatedUrl}`;
+    this.url = `${window.location.origin}/${this.storedUserName.trim() !== '' ? '#/@' : ''}${this.storedUserName}${this.links.length > 0 ? '?' : ''}${updatedUrl}`;
   };
 
   updateUserName = (newUserName: string) => {
